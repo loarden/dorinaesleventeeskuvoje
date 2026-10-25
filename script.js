@@ -112,7 +112,7 @@ if (rsvpForm) {
     submitBtn.textContent = 'Küldés...';
 
     try {
-      const response = await fetch('http://localhost:3000/api/submit-rsvp', {
+      const response = await fetch('/api/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
