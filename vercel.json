@@ -9,6 +9,5 @@
     "RECIPIENT_EMAIL": "@recipient_email",
     "SENDER_NAME": "@sender_name",
     "EMAIL_SUBJECT": "@email_subject"
-  },
-  "public": true
+  }
 }
