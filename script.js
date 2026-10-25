@@ -95,7 +95,7 @@ if (rsvpForm) {
   nameInput.addEventListener("input", validateName);
   countInput.addEventListener("input", validateCount);
 
-  rsvpForm.addEventListener("submit", (event) => {
+  rsvpForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const isNameValid = validateName();
@@ -106,17 +106,36 @@ if (rsvpForm) {
       return;
     }
 
-    const guest = {
-      name: nameInput.value.trim(),
-      count: Number(countInput.value),
-      submittedAt: new Date().toISOString(),
-    };
+    const submitBtn = rsvpForm.querySelector('.btn-submit');
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Küldés...';
 
-    const guests = JSON.parse(localStorage.getItem("rsvpGuests") || "[]");
-    guests.push(guest);
-    localStorage.setItem("rsvpGuests", JSON.stringify(guests));
+    try {
+      const response = await fetch('http://localhost:3000/api/submit-rsvp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: nameInput.value.trim(),
+          count: Number(countInput.value),
+        }),
+      });
 
-    rsvpCard.hidden = true;
-    rsvpSuccess.hidden = false;
+      if (!response.ok) {
+        throw new Error('Email submission failed');
+      }
+
+      rsvpCard.hidden = true;
+      rsvpSuccess.hidden = false;
+      nameInput.value = '';
+      countInput.value = '';
+    } catch (error) {
+      console.error('Submission error:', error);
+      alert('Hiba a beküldés során. Kérjük, próbálja újra később.');
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    }
   });
 }
