@@ -4,12 +4,14 @@
   "description": "D & L Wedding RSVP Site",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
-    "dev": "vercel dev",
-    "build": "npm install"
+    "dev": "vercel dev"
   },
   "dependencies": {
-    "nodemailer": "^6.10.1"
+    "nodemailer": "^10.2.1"
   },
   "keywords": ["wedding", "rsvp"],
   "author": "Biacsi Örs",
