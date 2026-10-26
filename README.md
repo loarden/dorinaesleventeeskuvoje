@@ -76,9 +76,9 @@ SMTP_PORT=587
 SMTP_SECURE=false
 SMTP_USER=your-email@gmail.com
 SMTP_PASSWORD=your-app-password
-RECIPIENT_EMAIL=biacsi.ors@gmail.com
-SENDER_NAME=D & L Esküvő
-EMAIL_SUBJECT=Új visszajelzés - D & L Esküvő
+RECIPIENT_EMAIL=email.address@gmail.com
+SENDER_NAME=sender-name
+EMAIL_SUBJECT=email-subject
 ```
 
 3. Run development server:
